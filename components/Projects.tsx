@@ -7,24 +7,6 @@ import { Github, ExternalLink, Folder } from "lucide-react";
 
 const projects = [
 	{
-		title: "Intellect Ink",
-		description:
-			"A microlearning app designed to help users stop doom scrolliing.",
-		tech: ["Express.js", "Javascript", "MongoDB", "React Native"],
-		image: "/intellect_ink_logo.png",
-		githubLink: "https://github.com/Nsujatno/Intellect-Ink",
-		liveLink: "https://youtube.com/shorts/o3EKzoMmdV0?feature=share",
-	},
-	{
-		title: "Kanban Sync",
-		description:
-			"An AI-powered workflow assistant used in datacenter operations, enabling natural language task creation and validation.",
-		tech: ["Python", "FastAPI", "RAG", "Supabase", "OpenAI"],
-		image: "/kanban_sync_logo.png",
-		githubLink: "https://github.com/Nsujatno/hackutd25",
-		liveLink: "https://youtu.be/R-fUu01G1gE",
-	},
-	{
 		title: "Swe job matcher",
 		description:
 			"A fullstack AI-agent website that scrapes live job listings and provides strict, evidence-based scoring beyond simple keyword matching.",
@@ -39,6 +21,24 @@ const projects = [
 		image: "/swe_job_matcher_logo.png",
 		githublink: "https://github.com/Nsujatno/swe-job-matcher-fullstack",
 		liveLink: "https://youtu.be/_XyECzmRpuQ?si=iWPV8KDvCA7L6QYH",
+	},
+	{
+		title: "Kanban Sync",
+		description:
+			"An AI-powered workflow assistant used in datacenter operations, enabling natural language task creation and validation.",
+		tech: ["Python", "FastAPI", "RAG", "Supabase", "OpenAI"],
+		image: "/kanban_sync_logo.png",
+		githubLink: "https://github.com/Nsujatno/hackutd25",
+		liveLink: "https://youtu.be/R-fUu01G1gE",
+	},
+	{
+		title: "Intellect Ink",
+		description:
+			"A microlearning app designed to help users stop doom scrolliing.",
+		tech: ["Express.js", "Javascript", "MongoDB", "React Native"],
+		image: "/intellect_ink_logo.png",
+		githubLink: "https://github.com/Nsujatno/Intellect-Ink",
+		liveLink: "https://youtube.com/shorts/o3EKzoMmdV0?feature=share",
 	},
 ];
 
