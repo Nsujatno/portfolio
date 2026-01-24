@@ -1,19 +1,10 @@
 "use client";
 
-import React from "react";
-import { motion } from "framer-motion";
-import { Folder, ArrowUpRight, GitBranch } from "lucide-react";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowUpRight, Folder, ChevronRight, Github } from "lucide-react";
 
-// DATA: Personalize this with your specific learning experiments
 const miniProjects = [
-	{
-		title: "MeteorMate",
-		category: "Frontend",
-		description:
-			"A roomate matching application built on a responsive frontend (IN PROGRESS)",
-		tech: ["React.js", "TypeScript", "Tailwind CSS", "Next.js"],
-		link: "https://github.com/acmutd/meteormate-client",
-	},
 	{
 		title: "Multi Agent Research Assistant",
 		category: "AI",
@@ -48,87 +39,156 @@ const miniProjects = [
 ];
 
 const MiniProjects = () => {
-	return (
-		<section className="w-full py-20 bg-gray-950 text-white border-t border-gray-900">
-			<div className="container mx-auto px-6 max-w-6xl">
-				{/* Header */}
-				<div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
-					<motion.div
-						initial={{ opacity: 0, x: -20 }}
-						whileInView={{ opacity: 1, x: 0 }}
-						viewport={{ once: true }}
-					>
-						<h2 className="text-3xl md:text-4xl font-bold">
-							Experiments & <span className="text-emerald-400">Snippets</span>
-						</h2>
-						<p className="text-gray-400 mt-2 max-w-lg">
-							Smaller builds, learning exercises, and code experiments. Things I build
-							to stay sharp.
-						</p>
-					</motion.div>
+    const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
-					{/* Optional Link to full Gist/Repo profile */}
-					<motion.a
-						href="https://github.com/Nsujatno"
-						target="_blank"
-						rel="noopener noreferrer"
-						initial={{ opacity: 0, x: 20 }}
-						whileInView={{ opacity: 1, x: 0 }}
+	return (
+		<section className="w-full py-24 bg-gray-950 text-white border-t border-gray-900 relative overflow-hidden">
+            {/* Background elements */}
+            <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-emerald-500/20 to-transparent"></div>
+
+			<div className="container mx-auto px-6 max-w-4xl relative z-10">
+				
+                {/* Header Section */}
+				<div className="mb-16">
+					<motion.div
+						initial={{ opacity: 0, y: 20 }}
+						whileInView={{ opacity: 1, y: 0 }}
 						viewport={{ once: true }}
-						className="text-emerald-400 hover:text-emerald-300 flex items-center gap-2 text-sm font-medium transition-colors"
+                        className="flex flex-col md:flex-row md:items-end justify-between gap-6"
 					>
-						View Github Repos <ArrowUpRight size={16} />
-					</motion.a>
+                        <div>
+                            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                                Experiments & <span className="text-emerald-400">Snippets</span>
+                            </h2>
+                            <p className="text-gray-400 max-w-lg">
+                                Smaller builds, learning exercises, and code experiments. 
+                                <br className="hidden md:block"/>Things I build to stay sharp.
+                            </p>
+                        </div>
+                        
+                        <a
+                            href="https://github.com/Nsujatno"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hidden md:flex items-center gap-2 text-emerald-400 hover:text-emerald-300 transition-colors text-sm font-medium group"
+                        >
+                            View All Repos 
+                            <ArrowUpRight size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                        </a>
+					</motion.div>
 				</div>
 
-				{/* Grid */}
-				<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+				{/* Interactive List */}
+				<div className="flex flex-col">
 					{miniProjects.map((project, index) => (
-						<motion.a
-							href={project.link}
-							target="_blank"
-							rel="noopener noreferrer"
+						<motion.div
 							key={index}
 							initial={{ opacity: 0, y: 20 }}
 							whileInView={{ opacity: 1, y: 0 }}
 							viewport={{ once: true }}
-							transition={{ delay: index * 0.1 }}
-							className="group block p-6 bg-gray-900/50 border border-gray-800 rounded-xl hover:bg-gray-900 hover:border-emerald-500/50 transition-all duration-300 cursor-pointer"
+							transition={{ delay: index * 0.05 }}
+							className="group relative border-b border-gray-800 last:border-b-0"
+                            onMouseEnter={() => setHoveredIndex(index)}
+                            onMouseLeave={() => setHoveredIndex(null)}
 						>
-							<div className="flex justify-between items-start mb-4">
-								<div className="p-3 bg-gray-800 rounded-lg text-emerald-400 group-hover:text-white group-hover:bg-emerald-500 transition-all duration-300">
-									<Folder size={24} />
-								</div>
+                            <a 
+                                href={project.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="block w-full text-left py-6 md:py-8 md:px-8 px-4 transition-colors duration-300 hover:bg-gray-900/30 cursor-pointer"
+                                onClick={(e) => {
+                                    // Mobile: Toggle expand, prevent link
+                                    if (window.innerWidth < 768) {
+                                        e.preventDefault();
+                                        setHoveredIndex(hoveredIndex === index ? null : index);
+                                    }
+                                }}
+                            >
+                                <div className="flex items-start md:items-center justify-between gap-4">
+                                    <div className="flex items-start md:items-center gap-4 md:gap-6">
+                                        <span className="text-gray-600 font-mono text-sm pt-1 md:pt-0">0{index + 1}</span>
+                                        <div className="flex flex-col md:flex-row md:items-center gap-1 md:gap-6">
+                                            <h3 className="text-xl md:text-2xl font-bold text-gray-200 group-hover:text-emerald-400 transition-colors">
+                                                {project.title}
+                                            </h3>
+                                            <span className={`text-xs md:text-sm text-gray-500 font-mono md:hidden`}>
+                                                {project.category}
+                                            </span>
+                                        </div>
+                                    </div>
 
-								<div className="flex items-center gap-2">
-									<span className="text-xs font-mono text-gray-500 group-hover:text-emerald-400 transition-colors">
-										{project.category}
-									</span>
-									<ArrowUpRight
-										size={16}
-										className="text-gray-600 group-hover:text-white transition-colors"
-									/>
-								</div>
-							</div>
+                                    {/* Link/Arrow */}
+                                    <div className="flex items-center gap-4 pt-1 md:pt-0">
+                                        <span className={`hidden md:block text-sm text-gray-500 font-mono transition-opacity duration-300 ${hoveredIndex === index ? 'opacity-0' : 'opacity-100'}`}>
+                                            {project.category}
+                                        </span>
+                                        
+                                        {/* Separate Link Button (Mobile Only) */}
+                                        {/* Using div/onClick to avoid nested <a> tags */}
+                                        <div 
+                                            role="button"
+                                            className="md:hidden p-2 -m-2 z-10 hover:bg-gray-800 rounded-full transition-colors"
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                e.preventDefault();
+                                                window.open(project.link, '_blank');
+                                            }}
+                                            aria-label={`View ${project.title}`}
+                                        >
+                                            <ArrowUpRight 
+                                                size={20} 
+                                                className="text-emerald-400" 
+                                            />
+                                        </div>
 
-							<h3 className="text-xl font-bold mb-2 group-hover:text-emerald-400 transition-colors">
-								{project.title}
-							</h3>
+                                        {/* Desktop Arrow (Just visual, part of the main link) */}
+                                        <ArrowUpRight 
+                                            size={20} 
+                                            className={`hidden md:block text-emerald-400 transition-transform duration-300 ${hoveredIndex === index ? 'translate-x-0 opacity-100' : 'translate-y-4 opacity-0 scale-50'}`} 
+                                        />
+                                    </div>
+                                </div>
 
-							<p className="text-gray-400 text-sm mb-4 line-clamp-2">
-								{project.description}
-							</p>
-
-							<div className="flex flex-wrap gap-2 mt-auto">
-								{project.tech.map((t, i) => (
-									<span key={i} className="text-xs font-medium text-gray-500 font-mono">
-										{t} {i !== project.tech.length - 1 && "•"}
-									</span>
-								))}
-							</div>
-						</motion.a>
+                                {/* Expanded Content */}
+                                <motion.div
+                                    initial={false}
+                                    animate={{
+                                        height: hoveredIndex === index ? "auto" : 0,
+                                        opacity: hoveredIndex === index ? 1 : 0
+                                    }}
+                                    className="overflow-hidden"
+                                >
+                                    <div className="pt-4 md:pt-6 pl-0 md:pl-12 pr-0 md:pr-24">
+                                        <p className="text-gray-400 mb-4 leading-relaxed text-sm md:text-base">
+                                            {project.description}
+                                        </p>
+                                        <div className="flex flex-wrap gap-2">
+                                            {project.tech.map((t, i) => (
+                                                <span key={i} className="text-xs font-medium text-emerald-500/80 bg-emerald-500/10 px-2 py-1 rounded">
+                                                    {t}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </motion.div>
+                            </a>
+						</motion.div>
 					))}
 				</div>
+                
+                {/* Mobile View All Link */}
+                <div className="md:hidden mt-12 flex justify-center">
+                    <a
+                        href="https://github.com/Nsujatno"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 text-emerald-400 hover:text-emerald-300 transition-colors font-medium"
+                    >
+                        View All Repos 
+                        <ArrowUpRight size={16} />
+                    </a>
+                </div>
+
 			</div>
 		</section>
 	);

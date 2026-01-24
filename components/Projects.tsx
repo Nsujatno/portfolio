@@ -6,6 +6,14 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import ProjectCard from "./ProjectCard";
 
 const projects = [
+    {
+        title: "Meteormate",
+        description: "A fullstack website that helps UT Dallas students find their ideal roomates.",
+        tech: ["Next.js", "Typescript", "Tailwind CSS", "Python", "FastAPI", "Firebase", "Supabase"],
+        image: "/meteormate_logo.png",
+        githubLink: "https://github.com/acmutd/meteormate-client",
+        liveLink: "https://www.meteormate.com/",
+    },
 	{
 		title: "Swe job matcher",
 		description:
@@ -22,14 +30,6 @@ const projects = [
 		githubLink: "https://github.com/Nsujatno/swe-job-matcher-fullstack",
 		liveLink: "https://youtu.be/_XyECzmRpuQ?si=iWPV8KDvCA7L6QYH",
 	},
-    {
-        title: "Meteormate",
-        description: "A fullstack website that helps UT Dallas students find their ideal roomates.",
-        tech: ["Next.js", "Typescript", "Tailwind CSS", "Python", "FastAPI", "Firebase", "Supabase"],
-        image: "/meteormate_logo.png",
-        githubLink: "https://github.com/acmutd/meteormate-client",
-        liveLink: "https://www.meteormate.com/",
-    },
 	{
 		title: "Kanban Sync",
 		description:
