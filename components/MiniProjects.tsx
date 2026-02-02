@@ -1,10 +1,17 @@
 "use client";
 
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUpRight, Folder, ChevronRight, Github } from "lucide-react";
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 
 const miniProjects = [
+    {
+        title: "GreenGain",
+        category: "AI",
+        description: "A hackathon project designed to help save both the environment and money for our users",
+        tech: ["Langgraph", "Supabase", "Pinecone", "Next.js"],
+        link: "https://github.com/Nsujatno/hack-earth",
+    },
 	{
 		title: "Multi Agent Research Assistant",
 		category: "AI",
