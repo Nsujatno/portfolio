@@ -16,6 +16,15 @@ interface TimelineItem {
 
 const timelineData: TimelineItem[] = [
   {
+    id: 11,
+    title: "Winner",
+    organization: "HackEarth",
+    date: "Feb 2026",
+    description: "Won a hackathon focused on positive sustainability impact for the earth.",
+    type: "hackathon",
+    icon: <Trophy className="w-5 h-5" />,
+  },
+  {
     id: 1,
     title: "Project Manager",
     organization: "AIMD (Artificial Intelligence and Medicine)",
@@ -51,6 +60,7 @@ const timelineData: TimelineItem[] = [
     type: "hackathon",
     icon: <Trophy className="w-5 h-5" />,
   },
+
   {
     id: 5,
     title: "Member",

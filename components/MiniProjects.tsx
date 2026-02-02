@@ -7,14 +7,14 @@ import { ArrowUpRight } from "lucide-react";
 const miniProjects = [
     {
         title: "GreenGain",
-        category: "AI",
-        description: "A hackathon project designed to help save both the environment and money for our users",
+        category: "Agentic AI",
+        description: "A winning hackathon project designed to help save both the environment and money for our users utillizing agentic AI",
         tech: ["Langgraph", "Supabase", "Pinecone", "Next.js"],
         link: "https://github.com/Nsujatno/hack-earth",
     },
 	{
 		title: "Multi Agent Research Assistant",
-		category: "AI",
+		category: "Agentic AI",
 		description: "A simple multi agent research assistant using langgraph",
 		tech: ["Python", "Langgraph"],
 		link: "https://github.com/Nsujatno/multi-agent-research-assistant",
