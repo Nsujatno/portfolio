@@ -6,6 +6,13 @@ import { ArrowUpRight } from "lucide-react";
 
 const miniProjects = [
     {
+        title: "EcoQuest",
+        category: "Agentic AI",
+        description: "A gamified sustainability website designed to help anyone start saving the planet",
+        tech: ["Langgraph", "Supabase", "Climatiq API", "Next.js"],
+        link: "https://github.com/Nsujatno/frostbyte-hackathon",
+    },
+    {
         title: "GreenGain",
         category: "Agentic AI",
         description: "A winning hackathon project designed to help save both the environment and money for our users utillizing agentic AI",
@@ -18,7 +25,14 @@ const miniProjects = [
 		description: "A simple multi agent research assistant using langgraph",
 		tech: ["Python", "Langgraph"],
 		link: "https://github.com/Nsujatno/multi-agent-research-assistant",
-	},
+    },
+    {
+        title: "MCP server",
+        category: "MCP",
+        description: "An MCP server that connects to your obsidian vault",
+        tech: ["Python", "MCP"],
+        link: "https://github.com/Nsujatno/MCP-server-for-notes",
+    },
 	{
 		title: "Safespeak",
 		category: "AI",
@@ -26,23 +40,7 @@ const miniProjects = [
 			"A hackathon project designed to help accomodate victims of domestic abuse",
 		tech: ["Typescript", "Javascript", "HuggingFace", "MongoDB"],
 		link: "https://github.com/Nsujatno/safespeak",
-	},
-	{
-		title: "Valorant Pro Match Predictor",
-		category: "Machine Learning",
-		description:
-			"Built a random forest classifier to determine who wins a valorant match based on 2025 champs dataset",
-		tech: ["Python", "Scikit-learn"],
-		link: "https://github.com/Nsujatno/valorant-machine-learning",
-	},
-	{
-		title: "Heart Disease Predictor",
-		category: "Machine Learning",
-		description:
-			"Built a linear classifier, random forest classifier, gradient boosting classifier to predict the chance of a heart disease given symptoms",
-		tech: ["Python", "Scikit-learn"],
-		link: "https://github.com/Nsujatno/heart-disease-detector",
-	},
+	}
 ];
 
 const MiniProjects = () => {
