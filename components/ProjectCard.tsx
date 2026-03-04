@@ -150,7 +150,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 							className="flex items-center gap-2 px-6 py-3 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg font-medium transition-all hover:scale-105 active:scale-95 shadow-lg shadow-emerald-500/20"
 						>
 							<ExternalLink size={20} />
-							<span>Live Demo</span>
+							<span>Demo</span>
 						</a>
 					)}
 				</div>
