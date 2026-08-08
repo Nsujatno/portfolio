@@ -2,20 +2,9 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import { profile } from '@/data/profile';
 
-const skills = [
-  "Next.js",
-  "React",
-  "TypeScript",
-  "Tailwind CSS",
-  "Node.js",
-  "PostgreSQL",
-  "MongoDB",
-  "Python",
-  "Javascript",
-  "Git",
-  "AWS",
-];
+const skills = profile.skills;
 
 const Skills = () => {
   return (

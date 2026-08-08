@@ -3,56 +3,18 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import { stuff } from "@/data/stuff";
 
-const miniProjects = [
-    {
-        title: "EcoQuest",
-        category: "Agentic AI",
-        description: "A gamified sustainability website designed to help anyone start saving the planet",
-        tech: ["Langgraph", "Supabase", "Climatiq API", "Next.js"],
-        link: "https://github.com/Nsujatno/frostbyte-hackathon",
-    },
-    {
-        title: "GreenGain",
-        category: "Agentic AI",
-        description: "A winning hackathon project designed to help save both the environment and money for our users utillizing agentic AI",
-        tech: ["Langgraph", "Supabase", "Pinecone", "Next.js"],
-        link: "https://github.com/Nsujatno/hack-earth",
-    },
-	{
-		title: "Multi Agent Research Assistant",
-		category: "Agentic AI",
-		description: "A simple multi agent research assistant using langgraph",
-		tech: ["Python", "Langgraph"],
-		link: "https://github.com/Nsujatno/multi-agent-research-assistant",
-    },
-    {
-        title: "MCP server",
-        category: "MCP",
-        description: "An MCP server that connects to your obsidian vault",
-        tech: ["Python", "MCP"],
-        link: "https://github.com/Nsujatno/MCP-server-for-notes",
-    },
-	{
-		title: "Safespeak",
-		category: "AI",
-		description:
-			"A hackathon project designed to help accomodate victims of domestic abuse",
-		tech: ["Typescript", "Javascript", "HuggingFace", "MongoDB"],
-		link: "https://github.com/Nsujatno/safespeak",
-	}
-];
-
-const MiniProjects = () => {
+const Playground = () => {
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
 	return (
-		<section className="w-full py-24 bg-gray-950 text-white border-t border-gray-900 relative overflow-hidden">
+		<section id="playground" className="w-full py-24 bg-gray-950 text-white border-t border-gray-900 relative overflow-hidden">
             {/* Background elements */}
             <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-emerald-500/20 to-transparent"></div>
 
 			<div className="container mx-auto px-6 max-w-4xl relative z-10">
-				
+
                 {/* Header Section */}
 				<div className="mb-16">
 					<motion.div
@@ -63,21 +25,21 @@ const MiniProjects = () => {
 					>
                         <div>
                             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                                Experiments & <span className="text-emerald-400">Snippets</span>
+                                The <span className="text-emerald-400">Playground</span>
                             </h2>
                             <p className="text-gray-400 max-w-lg">
-                                Smaller builds, learning exercises, and code experiments. 
+                                Experiments, automations, art, and whatever else I&apos;m tinkering with.
                                 <br className="hidden md:block"/>Things I build to stay sharp.
                             </p>
                         </div>
-                        
+
                         <a
                             href="https://github.com/Nsujatno"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="hidden md:flex items-center gap-2 text-emerald-400 hover:text-emerald-300 transition-colors text-sm font-medium group"
                         >
-                            View All Repos 
+                            View All Repos
                             <ArrowUpRight size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                         </a>
 					</motion.div>
@@ -85,7 +47,7 @@ const MiniProjects = () => {
 
 				{/* Interactive List */}
 				<div className="flex flex-col">
-					{miniProjects.map((project, index) => (
+					{stuff.map((project, index) => (
 						<motion.div
 							key={index}
 							initial={{ opacity: 0, y: 20 }}
@@ -96,7 +58,7 @@ const MiniProjects = () => {
                             onMouseEnter={() => setHoveredIndex(index)}
                             onMouseLeave={() => setHoveredIndex(null)}
 						>
-                            <a 
+                            <a
                                 href={project.link}
                                 target="_blank"
                                 rel="noopener noreferrer"
@@ -127,29 +89,31 @@ const MiniProjects = () => {
                                         <span className={`hidden md:block text-sm text-gray-500 font-mono transition-opacity duration-300 ${hoveredIndex === index ? 'opacity-0' : 'opacity-100'}`}>
                                             {project.category}
                                         </span>
-                                        
+
                                         {/* Separate Link Button (Mobile Only) */}
                                         {/* Using div/onClick to avoid nested <a> tags */}
-                                        <div 
-                                            role="button"
-                                            className="md:hidden p-2 -m-2 z-10 hover:bg-gray-800 rounded-full transition-colors"
-                                            onClick={(e) => {
-                                                e.stopPropagation();
-                                                e.preventDefault();
-                                                window.open(project.link, '_blank');
-                                            }}
-                                            aria-label={`View ${project.title}`}
-                                        >
-                                            <ArrowUpRight 
-                                                size={20} 
-                                                className="text-emerald-400" 
-                                            />
-                                        </div>
+                                        {project.link && (
+                                            <div
+                                                role="button"
+                                                className="md:hidden p-2 -m-2 z-10 hover:bg-gray-800 rounded-full transition-colors"
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    e.preventDefault();
+                                                    window.open(project.link, '_blank');
+                                                }}
+                                                aria-label={`View ${project.title}`}
+                                            >
+                                                <ArrowUpRight
+                                                    size={20}
+                                                    className="text-emerald-400"
+                                                />
+                                            </div>
+                                        )}
 
                                         {/* Desktop Arrow (Just visual, part of the main link) */}
-                                        <ArrowUpRight 
-                                            size={20} 
-                                            className={`hidden md:block text-emerald-400 transition-transform duration-300 ${hoveredIndex === index ? 'translate-x-0 opacity-100' : 'translate-y-4 opacity-0 scale-50'}`} 
+                                        <ArrowUpRight
+                                            size={20}
+                                            className={`hidden md:block text-emerald-400 transition-transform duration-300 ${hoveredIndex === index ? 'translate-x-0 opacity-100' : 'translate-y-4 opacity-0 scale-50'}`}
                                         />
                                     </div>
                                 </div>
@@ -167,20 +131,22 @@ const MiniProjects = () => {
                                         <p className="text-gray-400 mb-4 leading-relaxed text-sm md:text-base">
                                             {project.description}
                                         </p>
-                                        <div className="flex flex-wrap gap-2">
-                                            {project.tech.map((t, i) => (
-                                                <span key={i} className="text-xs font-medium text-emerald-500/80 bg-emerald-500/10 px-2 py-1 rounded">
-                                                    {t}
-                                                </span>
-                                            ))}
-                                        </div>
+                                        {project.tech && (
+                                            <div className="flex flex-wrap gap-2">
+                                                {project.tech.map((t, i) => (
+                                                    <span key={i} className="text-xs font-medium text-emerald-500/80 bg-emerald-500/10 px-2 py-1 rounded">
+                                                        {t}
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        )}
                                     </div>
                                 </motion.div>
                             </a>
 						</motion.div>
 					))}
 				</div>
-                
+
                 {/* Mobile View All Link */}
                 <div className="md:hidden mt-12 flex justify-center">
                     <a
@@ -189,7 +155,7 @@ const MiniProjects = () => {
                         rel="noopener noreferrer"
                         className="flex items-center gap-2 text-emerald-400 hover:text-emerald-300 transition-colors font-medium"
                     >
-                        View All Repos 
+                        View All Repos
                         <ArrowUpRight size={16} />
                     </a>
                 </div>
@@ -199,4 +165,4 @@ const MiniProjects = () => {
 	);
 };
 
-export default MiniProjects;
+export default Playground;

@@ -26,11 +26,11 @@ const Contact = () => {
           </p>
           
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Have a project? Let's connect.
+            Have a project? Let&apos;s connect.
           </h2>
           
           <p className="text-gray-400 text-lg mx-auto max-w-xl">
-            I'm currently seeking new challenges and opportunities in Full Stack and AI Engineering. 
+            I&apos;m currently seeking opportunities in AI Engineering — agentic systems, LLM pipelines, and everything in between.
             Feel free to reach out for collaboration or just to say hi!
           </p>
         </motion.div>
