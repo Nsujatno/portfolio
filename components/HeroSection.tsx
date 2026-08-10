@@ -1,11 +1,13 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
 import { motion, Variants } from "framer-motion";
+import NextLink from "next/link";
 import { Link } from "react-scroll";
 
+import Chat from "./Chat";
 import TextType from "./TextType";
+import { profile } from "@/data/profile";
 
 const Hero = () => {
 	const containerVariants: Variants = {
@@ -28,7 +30,7 @@ const Hero = () => {
 		},
 	};
 
-	const imageVariants: Variants = {
+	const chatVariants: Variants = {
 		hidden: { x: 100, opacity: 0 },
 		visible: {
 			x: 0,
@@ -38,115 +40,125 @@ const Hero = () => {
 	};
 
 	return (
-		<section className="relative w-full min-h-screen flex items-center justify-center bg-gray-950 overflow-hidden px-6 py-12">
+		<section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden px-6 py-12">
+			{/* Lamp glow + sage wash */}
 			<motion.div
-				animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
-				transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-				className="absolute top-[-10%] left-[-10%] w-96 h-96 bg-emerald-500/20 rounded-full blur-3xl pointer-events-none"
+				animate={{ scale: [1, 1.15, 1], opacity: [0.4, 0.6, 0.4] }}
+				transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+				className="absolute top-[-15%] right-[-10%] w-lg h-128 bg-clay/20 rounded-full blur-3xl pointer-events-none"
 			/>
 			<motion.div
 				animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.5, 0.3] }}
-				transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-				className="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"
+				transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+				className="absolute bottom-[-15%] left-[-10%] w-96 h-96 bg-sage/20 rounded-full blur-3xl pointer-events-none"
 			/>
 
-			<div className="container mx-auto max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-				<motion.div
-					className="flex flex-col space-y-6 z-10"
-					variants={containerVariants}
-					initial="hidden"
-					animate="visible"
-				>
-					<motion.span
-						variants={textVariants}
-						className="text-emerald-400 font-medium tracking-widest uppercase text-sm"
+			<div className="container mx-auto max-w-6xl z-10">
+				<div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+					<motion.div
+						className="flex flex-col space-y-6"
+						variants={containerVariants}
+						initial="hidden"
+						animate="visible"
 					>
-						Software Engineer
-					</motion.span>
+						<motion.span
+							variants={textVariants}
+							className="text-sage font-medium tracking-widest uppercase text-sm"
+						>
+							{profile.title}
+						</motion.span>
 
-					<motion.h1
-						variants={textVariants}
-						className="text-5xl md:text-7xl font-bold text-white leading-tight"
-					>
-						Hi, I'm{" "}
-						<span className="text-transparent bg-clip-text bg-linear-to-r from-emerald-400 to-teal-300">
-							Nathan
-						</span>
-					</motion.h1>
+						<motion.h1
+							variants={textVariants}
+							className="font-serif text-5xl md:text-7xl font-semibold text-forest leading-tight"
+						>
+							Hi, I&apos;m <span className="text-sage italic">Nathan</span>
+						</motion.h1>
+
+						<motion.div
+							variants={textVariants}
+							className="text-ink text-lg md:text-xl max-w-lg leading-relaxed"
+						>
+							<span className="whitespace-nowrap">I build </span>
+							<span className="text-sage font-semibold">
+								<TextType
+									text={profile.taglines}
+									typingSpeed={40}
+									pauseDuration={1500}
+									showCursor={true}
+									cursorCharacter="|"
+								/>
+							</span>
+						</motion.div>
+
+						<motion.div variants={textVariants} className="flex flex-wrap gap-4 pt-4">
+							<Link
+								to="experience"
+								smooth={true}
+								duration={800}
+								offset={-50}
+								className="cursor-pointer"
+							>
+								<motion.button
+									whileHover={{ scale: 1.03 }}
+									whileTap={{ scale: 0.97 }}
+									className="px-8 py-3 rounded-full bg-forest text-cream font-medium shadow-md shadow-forest/15 hover:bg-sage transition-colors"
+								>
+									View my work
+								</motion.button>
+							</Link>
+							<Link
+								to="contact"
+								smooth={true}
+								duration={800}
+								offset={-50}
+								className="cursor-pointer"
+							>
+								<motion.button
+									whileHover={{ scale: 1.03 }}
+									whileTap={{ scale: 0.97 }}
+									className="px-8 py-3 rounded-full border border-line text-forest font-medium hover:border-sage hover:text-sage transition-colors"
+								>
+									Get in touch
+								</motion.button>
+							</Link>
+						</motion.div>
+
+						<motion.p variants={textVariants} className="pt-2">
+							<NextLink
+								href="/playground"
+								className="font-serif italic text-ink/70 hover:text-sage transition-colors"
+							>
+								psst check out the playground →
+							</NextLink>
+						</motion.p>
+					</motion.div>
 
 					<motion.div
-						variants={textVariants}
-						className="text-gray-400 text-lg md:text-xl max-w-lg leading-relaxed"
+						className="relative flex justify-center lg:justify-end"
+						variants={chatVariants}
+						initial="hidden"
+						animate="visible"
 					>
-						<span className="whitespace-nowrap">I specialize in </span>
-						<span className="text-emerald-400 font-semibold">
-							<TextType
-								text={[
-									"Full Stack Development.",
-									"Backend Architecture.",
-									"AI & Machine Learning.",
-									"Agentic AI Solutions.",
-								]}
-								typingSpeed={40}
-								pauseDuration={1500}
-								showCursor={true}
-								cursorCharacter="|"
-							/>
-						</span>
+						<Chat />
 					</motion.div>
+				</div>
 
-					<motion.div variants={textVariants} className="flex flex-wrap gap-4 pt-4">
-						<Link
-							to="projects"
-							smooth={true}
-							duration={800}
-							offset={-50}
-							className="cursor-pointer"
-						>
-							<motion.button
-								whileHover={{ scale: 1.05 }}
-								whileTap={{ scale: 0.95 }}
-								className="px-8 py-3 rounded-full bg-emerald-500 text-gray-950 font-bold shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:shadow-[0_0_30px_rgba(16,185,129,0.5)] transition-shadow"
-							>
-								View Projects
-							</motion.button>
-						</Link>
-						<Link
-							to="contact"
-							smooth={true}
-							duration={800}
-							offset={-50}
-							className="cursor-pointer"
-						>
-							<motion.button
-								whileHover={{ scale: 1.05, borderColor: "#34d399", color: "#34d399" }}
-								whileTap={{ scale: 0.95 }}
-								className="px-8 py-3 rounded-full border border-gray-700 text-white transition-colors"
-							>
-								Contact Me
-							</motion.button>
-						</Link>
-					</motion.div>
-				</motion.div>
-
+				{/* Stats strip */}
 				<motion.div
-					className="relative flex justify-center lg:justify-end z-10"
-					variants={imageVariants}
-					initial="hidden"
-					animate="visible"
+					initial={{ opacity: 0, y: 30 }}
+					animate={{ opacity: 1, y: 0 }}
+					transition={{ delay: 1, duration: 0.6 }}
+					className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 border-t border-line pt-10"
 				>
-					<div className="relative w-72 h-72 md:w-96 md:h-96 group">
-						<div className="absolute inset-0 border-2 border-emerald-500 rounded-2xl translate-x-4 translate-y-4 transition-transform group-hover:translate-x-2 group-hover:translate-y-2" />
-						<div className="relative w-full h-full rounded-2xl overflow-hidden bg-gray-800 shadow-2xl">
-							<Image
-								src="/profile.jpg"
-								alt="Profile Portrait"
-								fill
-								className="object-cover transition-all duration-500"
-								priority
-							/>
+					{profile.stats.map((stat) => (
+						<div key={stat.label} className="flex flex-col gap-1">
+							<span className="text-3xl md:text-4xl font-bold font-mono text-sage">
+								{stat.value}
+							</span>
+							<span className="text-sm text-ink/70 leading-snug">{stat.label}</span>
 						</div>
-					</div>
+					))}
 				</motion.div>
 			</div>
 		</section>

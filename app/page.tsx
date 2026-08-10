@@ -1,18 +1,16 @@
 import Contact from "@/components/Contact";
+import Education from "@/components/Education";
+import Experience from "@/components/Experience";
 import HeroSection from "@/components/HeroSection";
-import MiniProjects from "@/components/MiniProjects";
 import Projects from "@/components/Projects";
-import Skills from "@/components/Skills";
-import EducationTimeline from "@/components/EducationTimeline";
 
 export default function Home() {
   return(
     <div>
       <HeroSection />
-      <Skills />
+      <Experience />
       <Projects />
-      <MiniProjects />
-      <EducationTimeline />
+      <Education />
       <Contact />
     </div>
   );
