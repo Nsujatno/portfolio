@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Linkedin, Github, ArrowRight } from 'lucide-react';
+import { Linkedin, Github } from 'lucide-react';
 
 const socialLinks = [
   { icon: Linkedin, href: 'https://www.linkedin.com/in/nathan-sujatno/', label: 'LinkedIn' },
@@ -11,7 +11,7 @@ const socialLinks = [
 
 const Contact = () => {
   return (
-    <section id="contact" className="w-full py-24 md:py-32 bg-gray-950 text-white">
+    <section id="contact" className="w-full py-24 md:py-32 border-t border-line">
       <div className="container mx-auto px-6 max-w-3xl text-center">
         
         <motion.div
@@ -21,33 +21,30 @@ const Contact = () => {
           transition={{ duration: 0.5 }}
           className="mb-12"
         >
-          <p className="text-emerald-400 font-medium tracking-widest uppercase text-sm mb-4">
+          <p className="text-sage font-medium tracking-widest uppercase text-sm mb-4">
             Get in Touch
           </p>
           
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+          <h2 className="font-serif text-4xl md:text-5xl font-semibold text-forest mb-4">
             Have a project? Let&apos;s connect.
           </h2>
           
-          <p className="text-gray-400 text-lg mx-auto max-w-xl">
+          <p className="text-ink text-lg mx-auto max-w-xl">
             I&apos;m currently seeking opportunities in AI Engineering — agentic systems, LLM pipelines, and everything in between.
             Feel free to reach out for collaboration or just to say hi!
           </p>
         </motion.div>
 
-        {/* Primary Email CTA Button */}
+        {/* Primary Email CTA */}
         <motion.a
           href="mailto:nathan.sujatno@gmail.com"
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.98 }}
-          className="inline-flex items-center justify-center gap-3 px-10 py-4 rounded-full bg-emerald-500 hover:bg-emerald-400 text-gray-950 font-bold text-lg shadow-xl shadow-emerald-500/30 transition-all duration-300 mb-12"
+          className="inline-block font-serif text-2xl md:text-3xl text-forest underline underline-offset-8 decoration-sage/60 hover:text-sage hover:decoration-sage transition-colors mb-12"
         >
-          <Mail size={20} />
-          Say Hello
+          nathan.sujatno@gmail.com
         </motion.a>
 
         {/* Social Links */}
@@ -64,8 +61,8 @@ const Contact = () => {
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              whileHover={{ y: -5, color: '#34d399' }}
-              className="text-gray-500 hover:text-emerald-400 transition-colors duration-200"
+              whileHover={{ y: -5, color: '#7c9070' }}
+              className="text-ink/60 hover:text-sage transition-colors duration-200"
               aria-label={link.label}
             >
               <link.icon size={30} />

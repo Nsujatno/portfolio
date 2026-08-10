@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { Send, Sparkles } from "lucide-react";
+import { Send } from "lucide-react";
 
 interface Message {
 	role: "user" | "assistant";
@@ -63,13 +63,12 @@ const Chat = () => {
 	const showChips = messages.length === 1;
 
 	return (
-		<div className="w-full max-w-md flex flex-col rounded-2xl border border-gray-800 bg-gray-900/60 backdrop-blur-sm shadow-2xl overflow-hidden h-[480px]">
+		<div className="w-full max-w-md flex flex-col rounded-2xl border border-line bg-card shadow-[0_8px_30px_rgba(92,86,72,0.12)] overflow-hidden h-[480px]">
 			{/* Header */}
-			<div className="flex items-center gap-2 px-4 py-3 border-b border-gray-800 bg-gray-900/80">
-				<Sparkles size={16} className="text-emerald-400" />
-				<span className="text-sm font-mono text-gray-300">ask-my-portfolio</span>
-				<span className="ml-auto flex items-center gap-1.5 text-xs text-gray-500 font-mono">
-					<span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+			<div className="flex items-center gap-2 px-4 py-3 border-b border-line bg-cream-dark/40">
+				<span className="text-sm font-mono text-ink">ask-my-portfolio</span>
+				<span className="ml-auto flex items-center gap-1.5 text-xs text-ink/60 font-mono">
+					<span className="w-1.5 h-1.5 rounded-full bg-sage animate-pulse" />
 					online
 				</span>
 			</div>
@@ -81,8 +80,8 @@ const Chat = () => {
 						<div
 							className={`max-w-[85%] px-4 py-2.5 rounded-2xl text-sm leading-relaxed ${
 								m.role === "user"
-									? "bg-emerald-600 text-white rounded-br-sm"
-									: "bg-gray-800 text-gray-200 rounded-bl-sm"
+									? "bg-sage text-cream rounded-br-sm"
+									: "bg-cream-dark text-ink rounded-bl-sm"
 							}`}
 						>
 							{m.content}
@@ -91,11 +90,11 @@ const Chat = () => {
 				))}
 				{loading && (
 					<div className="flex justify-start">
-						<div className="bg-gray-800 px-4 py-3 rounded-2xl rounded-bl-sm flex gap-1.5">
+						<div className="bg-cream-dark px-4 py-3 rounded-2xl rounded-bl-sm flex gap-1.5">
 							{[0, 150, 300].map((d) => (
 								<span
 									key={d}
-									className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-bounce"
+									className="w-1.5 h-1.5 rounded-full bg-sage animate-bounce"
 									style={{ animationDelay: `${d}ms` }}
 								/>
 							))}
@@ -111,7 +110,7 @@ const Chat = () => {
 						<button
 							key={s}
 							onClick={() => send(s)}
-							className="text-xs px-3 py-1.5 rounded-full border border-gray-700 text-gray-300 hover:border-emerald-500/50 hover:text-emerald-400 transition-colors cursor-pointer"
+							className="text-xs px-3 py-1.5 rounded-full border border-line text-ink hover:border-sage hover:text-sage transition-colors cursor-pointer"
 						>
 							{s}
 						</button>
@@ -125,19 +124,19 @@ const Chat = () => {
 					e.preventDefault();
 					send(input);
 				}}
-				className="flex items-center gap-2 p-3 border-t border-gray-800"
+				className="flex items-center gap-2 p-3 border-t border-line"
 			>
 				<input
 					value={input}
 					onChange={(e) => setInput(e.target.value)}
 					placeholder="Ask about Nathan..."
 					maxLength={500}
-					className="flex-1 bg-gray-800/60 border border-gray-700 rounded-full px-4 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500/50"
+					className="flex-1 bg-cream-dark/50 border border-line rounded-full px-4 py-2.5 text-sm text-forest placeholder-ink/50 focus:outline-none focus:border-sage"
 				/>
 				<button
 					type="submit"
 					disabled={loading || !input.trim()}
-					className="p-2.5 rounded-full bg-emerald-500 text-gray-950 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-emerald-400 transition-colors cursor-pointer"
+					className="p-2.5 rounded-full bg-sage text-cream disabled:opacity-40 disabled:cursor-not-allowed hover:bg-forest transition-colors cursor-pointer"
 					aria-label="Send message"
 				>
 					<Send size={16} />

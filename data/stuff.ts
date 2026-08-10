@@ -4,16 +4,26 @@ export interface StuffItem {
 	description: string;
 	tech?: string[];
 	link?: string;
+	image?: string; // path under /public, for art pieces etc.
 }
 
 // Anything goes here: experiments, automations, art, one-off scripts.
 export const stuff: StuffItem[] = [
+ 	{
+		title: "LeetCode Check",
+		category: "Automation",
+		description:
+			"An Apple Shortcut that checks whether you've done your daily LeetCode problem. Tap in for setup instructions.",
+		tech: ["Apple Shortcuts"],
+		link: "/playground/leetcode-shortcut",
+	},
 	{
-		title: "Multi Agent Research Assistant",
+		title: "SWE Job Matcher",
 		category: "Agentic AI",
-		description: "A multi-agent research assistant built with LangGraph.",
-		tech: ["Python", "LangGraph"],
-		link: "https://github.com/Nsujatno/multi-agent-research-assistant",
+		description:
+			"AI agent that scrapes live job listings and scores them against your resume with strict, evidence-based reasoning beyond keyword matching.",
+		tech: ["Python", "LangChain", "OpenAI", "Next.js"],
+		link: "https://github.com/Nsujatno/swe-job-matcher-fullstack",
 	},
 	{
 		title: "Obsidian MCP Server",

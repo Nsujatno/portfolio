@@ -1,165 +1,88 @@
 "use client";
 
-import { useState } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { stuff } from "@/data/stuff";
 
+// Alternating tilts give the pinboard/scrapbook feel
+const tilts = ["-rotate-1", "rotate-1", "rotate-2", "-rotate-2"];
+
 const Playground = () => {
-    const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-
 	return (
-		<section id="playground" className="w-full py-24 bg-gray-950 text-white border-t border-gray-900 relative overflow-hidden">
-            {/* Background elements */}
-            <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-emerald-500/20 to-transparent"></div>
+		<section id="playground" className="w-full min-h-screen py-24 relative overflow-hidden">
+			<div className="container mx-auto px-6 max-w-5xl relative z-10">
+				{/* Header */}
+				<motion.div
+					initial={{ opacity: 0, y: 20 }}
+					whileInView={{ opacity: 1, y: 0 }}
+					viewport={{ once: true }}
+					className="mb-16 text-center"
+				>
+					<h2 className="font-serif text-3xl md:text-4xl font-semibold text-forest mb-4">
+						The <span className="text-sage italic">Playground</span>
+					</h2>
+					<p className="text-ink max-w-md mx-auto">
+						Small things I make for fun. Experiments, automations, art, whatever.
+					</p>
+				</motion.div>
 
-			<div className="container mx-auto px-6 max-w-4xl relative z-10">
+				{/* Pinboard grid */}
+				<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+					{stuff.map((item, index) => {
+						const card = (
+							<motion.div
+								initial={{ opacity: 0, y: 20 }}
+								whileInView={{ opacity: 1, y: 0 }}
+								viewport={{ once: true }}
+								transition={{ delay: (index % 3) * 0.08 }}
+								whileHover={{ rotate: 0, y: -4 }}
+								className={`h-full flex flex-col rounded-xl border border-line bg-card p-5 shadow-[0_4px_20px_rgba(92,86,72,0.08)] hover:border-sage/60 hover:shadow-[0_8px_28px_rgba(92,86,72,0.14)] transition-[border-color,box-shadow] ${tilts[index % tilts.length]}`}
+							>
+								{item.image && (
+									<div className="relative w-full aspect-video mb-4 rounded-lg overflow-hidden bg-cream-dark">
+										<Image src={item.image} alt={item.title} fill className="object-cover" />
+									</div>
+								)}
 
-                {/* Header Section */}
-				<div className="mb-16">
-					<motion.div
-						initial={{ opacity: 0, y: 20 }}
-						whileInView={{ opacity: 1, y: 0 }}
-						viewport={{ once: true }}
-                        className="flex flex-col md:flex-row md:items-end justify-between gap-6"
-					>
-                        <div>
-                            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                                The <span className="text-emerald-400">Playground</span>
-                            </h2>
-                            <p className="text-gray-400 max-w-lg">
-                                Experiments, automations, art, and whatever else I&apos;m tinkering with.
-                                <br className="hidden md:block"/>Things I build to stay sharp.
-                            </p>
-                        </div>
+								<div className="flex items-start justify-between gap-2 mb-2">
+									<span className="font-serif italic text-sm text-sage">{item.category}</span>
+									{item.link && <ArrowUpRight size={16} className="text-sage shrink-0" />}
+								</div>
 
-                        <a
-                            href="https://github.com/Nsujatno"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="hidden md:flex items-center gap-2 text-emerald-400 hover:text-emerald-300 transition-colors text-sm font-medium group"
-                        >
-                            View All Repos
-                            <ArrowUpRight size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                        </a>
-					</motion.div>
+								<h3 className="font-bold text-forest mb-2">{item.title}</h3>
+								<p className="text-ink/80 text-sm leading-relaxed flex-1">{item.description}</p>
+
+								{item.tech && (
+									<div className="flex flex-wrap gap-1.5 mt-4">
+										{item.tech.map((t) => (
+											<span
+												key={t}
+												className="text-[11px] font-medium text-sage bg-sage/10 px-2 py-0.5 rounded"
+											>
+												{t}
+											</span>
+										))}
+									</div>
+								)}
+							</motion.div>
+						);
+
+						return item.link ? (
+							<a
+								key={item.title}
+								href={item.link}
+								{...(item.link.startsWith("/")
+									? {}
+									: { target: "_blank", rel: "noopener noreferrer" })}
+							>
+								{card}
+							</a>
+						) : (
+							<div key={item.title}>{card}</div>
+						);
+					})}
 				</div>
-
-				{/* Interactive List */}
-				<div className="flex flex-col">
-					{stuff.map((project, index) => (
-						<motion.div
-							key={index}
-							initial={{ opacity: 0, y: 20 }}
-							whileInView={{ opacity: 1, y: 0 }}
-							viewport={{ once: true }}
-							transition={{ delay: index * 0.05 }}
-							className="group relative border-b border-gray-800 last:border-b-0"
-                            onMouseEnter={() => setHoveredIndex(index)}
-                            onMouseLeave={() => setHoveredIndex(null)}
-						>
-                            <a
-                                href={project.link}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="block w-full text-left py-6 md:py-8 md:px-8 px-4 transition-colors duration-300 hover:bg-gray-900/30 cursor-pointer"
-                                onClick={(e) => {
-                                    // Mobile: Toggle expand, prevent link
-                                    if (window.innerWidth < 768) {
-                                        e.preventDefault();
-                                        setHoveredIndex(hoveredIndex === index ? null : index);
-                                    }
-                                }}
-                            >
-                                <div className="flex items-start md:items-center justify-between gap-4">
-                                    <div className="flex items-start md:items-center gap-4 md:gap-6">
-                                        <span className="text-gray-600 font-mono text-sm pt-1 md:pt-0">0{index + 1}</span>
-                                        <div className="flex flex-col md:flex-row md:items-center gap-1 md:gap-6">
-                                            <h3 className="text-xl md:text-2xl font-bold text-gray-200 group-hover:text-emerald-400 transition-colors">
-                                                {project.title}
-                                            </h3>
-                                            <span className={`text-xs md:text-sm text-gray-500 font-mono md:hidden`}>
-                                                {project.category}
-                                            </span>
-                                        </div>
-                                    </div>
-
-                                    {/* Link/Arrow */}
-                                    <div className="flex items-center gap-4 pt-1 md:pt-0">
-                                        <span className={`hidden md:block text-sm text-gray-500 font-mono transition-opacity duration-300 ${hoveredIndex === index ? 'opacity-0' : 'opacity-100'}`}>
-                                            {project.category}
-                                        </span>
-
-                                        {/* Separate Link Button (Mobile Only) */}
-                                        {/* Using div/onClick to avoid nested <a> tags */}
-                                        {project.link && (
-                                            <div
-                                                role="button"
-                                                className="md:hidden p-2 -m-2 z-10 hover:bg-gray-800 rounded-full transition-colors"
-                                                onClick={(e) => {
-                                                    e.stopPropagation();
-                                                    e.preventDefault();
-                                                    window.open(project.link, '_blank');
-                                                }}
-                                                aria-label={`View ${project.title}`}
-                                            >
-                                                <ArrowUpRight
-                                                    size={20}
-                                                    className="text-emerald-400"
-                                                />
-                                            </div>
-                                        )}
-
-                                        {/* Desktop Arrow (Just visual, part of the main link) */}
-                                        <ArrowUpRight
-                                            size={20}
-                                            className={`hidden md:block text-emerald-400 transition-transform duration-300 ${hoveredIndex === index ? 'translate-x-0 opacity-100' : 'translate-y-4 opacity-0 scale-50'}`}
-                                        />
-                                    </div>
-                                </div>
-
-                                {/* Expanded Content */}
-                                <motion.div
-                                    initial={false}
-                                    animate={{
-                                        height: hoveredIndex === index ? "auto" : 0,
-                                        opacity: hoveredIndex === index ? 1 : 0
-                                    }}
-                                    className="overflow-hidden"
-                                >
-                                    <div className="pt-4 md:pt-6 pl-0 md:pl-12 pr-0 md:pr-24">
-                                        <p className="text-gray-400 mb-4 leading-relaxed text-sm md:text-base">
-                                            {project.description}
-                                        </p>
-                                        {project.tech && (
-                                            <div className="flex flex-wrap gap-2">
-                                                {project.tech.map((t, i) => (
-                                                    <span key={i} className="text-xs font-medium text-emerald-500/80 bg-emerald-500/10 px-2 py-1 rounded">
-                                                        {t}
-                                                    </span>
-                                                ))}
-                                            </div>
-                                        )}
-                                    </div>
-                                </motion.div>
-                            </a>
-						</motion.div>
-					))}
-				</div>
-
-                {/* Mobile View All Link */}
-                <div className="md:hidden mt-12 flex justify-center">
-                    <a
-                        href="https://github.com/Nsujatno"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-emerald-400 hover:text-emerald-300 transition-colors font-medium"
-                    >
-                        View All Repos
-                        <ArrowUpRight size={16} />
-                    </a>
-                </div>
-
 			</div>
 		</section>
 	);

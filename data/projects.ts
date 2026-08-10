@@ -23,7 +23,7 @@ export const projects: Project[] = [
 	},
 	{
 		title: "Green Gain",
-		award: "2nd Place · HackEarth",
+		award: "1st Place · Best Sustainability Impact, HackEarth",
 		description:
 			"Home energy-efficiency planner that only recommends upgrades that actually pay off.",
 		highlights: [
@@ -34,15 +34,25 @@ export const projects: Project[] = [
 		githubLink: "https://github.com/Nsujatno/hack-earth",
 	},
 	{
-		title: "SWE Job Matcher",
+		title: "Autonomous Minecraft Agent",
+		award: "Currently Building",
 		description:
-			"AI agent that scrapes live job listings and scores them against your resume with strict, evidence-based reasoning beyond keyword matching.",
+			"An AI agent that lives inside a real Minecraft world — you give it a goal in chat and it plans, acts, and adapts on its own.",
 		highlights: [
-			"Agentic scoring pipeline built with LangChain and OpenAI over live scraped listings.",
+			"Agentic plan → act → observe → reflect loop driving a live game character, with persistent goals and strict LLM cost controls.",
 		],
-		tech: ["Python", "LangChain", "OpenAI", "Next.js", "TypeScript"],
-		githubLink: "https://github.com/Nsujatno/swe-job-matcher-fullstack",
-		liveLink: "https://youtu.be/_XyECzmRpuQ?si=iWPV8KDvCA7L6QYH",
+		tech: ["TypeScript", "Mineflayer", "Python", "OpenAI", "WebSockets"],
+	},
+	{
+		title: "OPTCG Binder",
+		description:
+			"Drag-and-drop trading card binder editor with AI-powered card recommendations.",
+		highlights: [
+			"Built a drag-and-drop binder editor in Next.js with configurable grid formats (1x1 to 4x4), multi-page layouts, autosave, JSON import/export, and semantic card recommendations returning 5-10 ranked suggestions via OpenAI embeddings and Upstash Vector.",
+			"Architected a no-database v1 around an in-memory TTL-cached API proxy with per-IP rate limiting.",
+		],
+		tech: ["Next.js", "TypeScript", "OpenAI Embeddings", "Upstash Vector"],
+    liveLink: "https://www.optcgbinder.app",
 	},
 	{
 		title: "MeteorMate",
