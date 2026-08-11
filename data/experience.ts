@@ -14,8 +14,8 @@ export const experience: Experience[] = [
 		company: "Valero Energy Corporation",
 		role: "AI Engineering Intern",
 		location: "San Antonio, TX",
-		date: "May 2026 — Present",
-		status: "active",
+		date: "May 2026 — August 2026",
+		status: "completed",
 		metrics: [
 			{ value: "98%", label: "manual processing cut" },
 			{ value: "95%", label: "eval accuracy" },

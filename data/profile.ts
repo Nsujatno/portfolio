@@ -11,10 +11,10 @@ export const profile = {
 		"Full Stack Development.",
 	],
 	stats: [
-		{ value: "98%", label: "manual processing cut at Valero" },
-		{ value: "95%", label: "LLM extraction accuracy" },
-		{ value: "1st", label: "of 1,000+ hackathon participants" },
-		{ value: "40ms", label: "API latency, down from 3.5s" },
+		{ value: "2x", label: "hackathon winner" },
+		{ value: "F500", label: "AI engineering experience" },
+		{ value: "2", label: "products live in production" },
+		{ value: "4", label: "years to B.S. + M.S. in CS" },
 	],
 	skills: [
 		"LangGraph",

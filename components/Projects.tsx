@@ -52,7 +52,7 @@ const Projects = () => {
 											rel="noopener noreferrer"
 											className="text-ink underline underline-offset-4 decoration-line hover:text-sage hover:decoration-sage transition-colors"
 										>
-											demo
+											live site
 										</a>
 									)}
 								</span>

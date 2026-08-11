@@ -40,7 +40,7 @@ const Hero = () => {
 	};
 
 	return (
-		<section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden px-6 py-12">
+		<section className="relative w-full min-h-screen flex items-center justify-center overflow-x-clip px-6 py-12">
 			{/* Lamp glow + sage wash */}
 			<motion.div
 				animate={{ scale: [1, 1.15, 1], opacity: [0.4, 0.6, 0.4] }}
