@@ -15,6 +15,8 @@ const SUGGESTED = [
 	"What is he studying?",
 ];
 
+const HISTORY_MESSAGE_LIMIT = 10;
+
 const GREETING: Message = {
 	role: "assistant",
 	content: "Hey! I'm Nathan's portfolio assistant. Ask me anything about his work, projects, or background.",
@@ -34,7 +36,12 @@ const Chat = () => {
 		const content = text.trim();
 		if (!content || loading) return;
 
-		const history = [...messages.filter((m) => m !== GREETING), { role: "user" as const, content }];
+		// Keep the UI's full transcript, but send only recent context to avoid
+		// eventually exceeding the API's request-size guardrail.
+		const history = [
+			...messages.filter((m) => m !== GREETING).slice(-(HISTORY_MESSAGE_LIMIT - 1)),
+			{ role: "user" as const, content },
+		];
 		setMessages([...messages, { role: "user", content }]);
 		setInput("");
 		setLoading(true);
